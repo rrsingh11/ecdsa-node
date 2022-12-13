@@ -1,3 +1,11 @@
+## Things to do 
+- [ ] Generate random private key and wallet address
+- [ ] Create a column to add private key
+- [ ] Store the address into a JSON
+- [ ] Sign the message
+- [ ] Send the recovery key and recovery bit to backend
+- [ ] Compare derived wallet address and do the transactions
+
 ## ECDSA Node
 
 This project is an example of using a client and server to facilitate transfers between different addresses. Since there is just a single server on the back-end handling transfers, this is clearly very centralized. We won't worry about distributed consensus for this project.
