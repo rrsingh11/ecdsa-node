@@ -1,7 +1,7 @@
 ## Things to do 
-- [ ] Generate random private key and wallet address
-- [ ] Create a column to add private key
-- [ ] Store the address into a JSON
+- [X] Generate random private key and wallet address
+- [X] Create a column to add private key
+- [X] Store the address into a JSON
 - [ ] Sign the message
 - [ ] Send the recovery key and recovery bit to backend
 - [ ] Compare derived wallet address and do the transactions

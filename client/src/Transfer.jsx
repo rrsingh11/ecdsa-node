@@ -1,12 +1,12 @@
 import { useState } from "react";
 import server from "./server";
 
-function Transfer({ address, setBalance }) {
+function Transfer({ address, setBalance, privateKey, setPrivateKey }) {
   const [sendAmount, setSendAmount] = useState("");
   const [recipient, setRecipient] = useState("");
 
   const setValue = (setter) => (evt) => setter(evt.target.value);
-
+  
   async function transfer(evt) {
     evt.preventDefault();
 
@@ -43,6 +43,16 @@ function Transfer({ address, setBalance }) {
           placeholder="Type an address, for example: 0x2"
           value={recipient}
           onChange={setValue(setRecipient)}
+        ></input>
+      </label>
+
+      
+      <label>
+        Private Key
+        <input
+          placeholder="Relax! we won't save it"
+          value={privateKey}
+          onChange={setValue(setPrivateKey)}
         ></input>
       </label>
 
