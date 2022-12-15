@@ -4,6 +4,9 @@ const app = express();
 const cors = require("cors");
 const port = 3042;
 
+const secp  = require('ethereum-cryptography/secp256k1')
+const { toHex } = require('ethereum-cryptography/utils')
+
 app.use(cors());
 app.use(express.json());
 
@@ -16,16 +19,24 @@ app.get("/balance/:address", (req, res) => {
 });
 
 app.post("/send", (req, res) => {
-  const { sender, recipient, amount } = req.body;
+  const { data, messageHash, sign } = req.body;
 
-  setInitialBalance(sender);
-  setInitialBalance(recipient);
+  const sender = data.sender
+  const amount = data.amount
+  setInitialBalance(data.sender);
+  setInitialBalance(data.recipient);
 
-  if (balances[sender] < amount) {
+  const isValid = isValidTransaction(messageHash,sign,sender)
+  if(!isValid) {
+    res.status(400).send({message: "Not a valid Sender"})
+  }
+
+  // console.log(balances[], amount)
+  if (balances[sender] < data.amount) {
     res.status(400).send({ message: "Not enough funds!" });
   } else {
     balances[sender] -= amount;
-    balances[recipient] += amount;
+    balances[data.recipient] += amount;
     res.send({ balance: balances[sender] });
   }
 });
@@ -38,4 +49,20 @@ function setInitialBalance(address) {
   if (!balances[address]) {
     balances[address] = 0;
   }
+}
+
+function isValidTransaction(messageHash, sign, sender) {
+  const signature = Uint8Array.from(Object.values(sign[0]))
+  const recoveryBit = sign[1]
+  // console.log(recoveredPublicKey)
+  // console.log(recoveryBit)
+  const recoveredPublicKey = secp.recoverPublicKey(messageHash, signature, recoveryBit)
+  // console.log("hello")
+  const isSigned = secp.verify(signature, messageHash, recoveredPublicKey)
+
+  const isValidSender = (sender.slice(2).toString() === toHex(recoveredPublicKey.slice(1).slice(-20)).toString()) ? true:false
+
+  if(isValidSender && isSigned) return true
+
+  return false
 }

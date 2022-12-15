@@ -2,9 +2,9 @@
 - [X] Generate random private key and wallet address
 - [X] Create a column to add private key
 - [X] Store the address into a JSON
-- [ ] Sign the message
-- [ ] Send the recovery key and recovery bit to backend
-- [ ] Compare derived wallet address and do the transactions
+- [X] Sign the message
+- [X] Send the recovery key and recovery bit to backend
+- [X] Compare derived wallet address and do the transactions
 
 ## ECDSA Node
 
