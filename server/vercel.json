@@ -8,8 +8,16 @@
     ],
     "routes": [
         {
-          "src": "/(.*)",
-          "dest": "/"
+          "src": "/",
+          "dest": "/balance/:address"
+        },
+        {
+            "src": "/balance/:address",
+            "dest": "/balance/:address"
+        },
+        {
+            "src": "/send",
+            "dest": "/send"
         }
       ]
   }
