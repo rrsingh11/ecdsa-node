@@ -40,7 +40,9 @@ app.post("/send", (req, res) => {
     res.send({ balance: balances[sender] });
   }
 });
-
+app.use("/", (req, res) => {
+  res.send("Nothing Here!");
+});
 app.listen(port, () => {
   console.log(`Listening on port ${port}!`);
 });
