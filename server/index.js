@@ -10,7 +10,7 @@ const { toHex } = require('ethereum-cryptography/utils')
 app.use(cors());
 app.use(express.json());
 
-const balances = JSON.parse(fs.readFileSync("../address.json", 'utf-8'))
+const balances = JSON.parse(fs.readFileSync("./address.json", 'utf-8'))
 
 app.get("/balance/:address", (req, res) => {
   const { address } = req.params;
