@@ -2,7 +2,10 @@ const express = require("express");
 const fs = require('fs')
 const app = express();
 const cors = require("cors");
-const port = 3042;
+const dotenv = require('dotenv')
+dotenv.config()
+
+const port = process.env.PORT;
 
 const secp  = require('ethereum-cryptography/secp256k1')
 const { toHex } = require('ethereum-cryptography/utils')
