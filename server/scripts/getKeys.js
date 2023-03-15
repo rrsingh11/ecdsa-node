@@ -28,13 +28,13 @@ function generateKeys(count) {
 function getKeys(keysInfo) {
     // console.log(keysInfo)
     fs.writeFileSync(
-        '../../keys.json',
+        '../keys.json',
         JSON.stringify(keysInfo),
         'utf-8')
 }
 async function getAddress(count) {
     fs.writeFileSync(
-        '../../address.json', 
+        '../address.json', 
         JSON.stringify(generateKeys(count)),
         'utf-8')
 }
